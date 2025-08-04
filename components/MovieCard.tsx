@@ -8,8 +8,9 @@ const MovieCard = ({
                    }: Movie) => {
     return (
         <Link href={`/movies/${id}`} asChild>
-            <TouchableOpacity className="w-[30%]">
+            <TouchableOpacity testID="movie-card" className="w-[30%]">
                 <Image
+                    testID="movie-poster"
                     source={{
                         uri: poster_path
                             ? `https://image.tmdb.org/t/p/w500${poster_path}`
