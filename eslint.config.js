@@ -5,8 +5,17 @@ module.exports = defineConfig([
     expoConfig,
     {
         ignores: ['dist/*'],
-        parser: '@typescript-eslint/parser',
-        plugins: ['@typescript-eslint'],
+        languageOptions: {
+            parser: '@typescript-eslint/parser',
+            parserOptions: {
+                ecmaFeatures: { jsx: true },
+                ecmaVersion: 2020,
+                sourceType: 'module',
+            },
+            plugins: {
+                '@typescript-eslint': require('@typescript-eslint/eslint-plugin'),
+            },
+        },
         settings: {
             'import/resolver': {
                 node: {
