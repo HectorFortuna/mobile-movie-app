@@ -25,11 +25,11 @@ const Details = () => {
 
     const shouldFetch = typeof id === 'string' && id !== '';
 
-    const {
-        data: movie,
-        loading,
-        error
-    } = useFetch(shouldFetch ? () => fetchMovieDetails(id) : null);
+    const fetcher = shouldFetch
+        ? () => fetchMovieDetails(id)
+        : () => Promise.resolve(null as unknown as MovieDetails);
+
+    const { data: movie, loading, error } = useFetch(fetcher);
 
     if (loading) {
         return (

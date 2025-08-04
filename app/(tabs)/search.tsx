@@ -33,9 +33,9 @@ const Search = () => {
     }, [searchQuery]);
 
     useEffect(() => {
-        if (movies?.length > 0 && movies?.[0])
+        if (movies && movies.length > 0 && movies[0]) {
             updateSearchCount(searchQuery, movies[0]);
-    }, [movies]);
+        }}, [movies]);
 
     return (
         <View className="flex-1 bg-primary">
@@ -77,7 +77,7 @@ const Search = () => {
                             </Text>
                         )}
 
-                        {!loading && !error && searchQuery.trim() && movies?.length > 0 && (
+                        {!loading && !error && searchQuery.trim() && movies && movies.length > 0 &&  (
                             <Text className="text-xl text-white font-bold">Search Results for{' '}
                                 <Text className="text-accent">{searchQuery}</Text>
                             </Text>
