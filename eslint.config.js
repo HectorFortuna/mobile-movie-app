@@ -9,13 +9,16 @@ module.exports = defineConfig([
     settings: {
       'import/resolver': {
         node: {
-          extensions: ['.js', '.jsx', '.ts', '.tsx', '.json', '.png'], // adiciona png aqui
+          extensions: ['.js', '.jsx', '.ts', '.tsx', '.json', '.png'],
         },
       },
     },
     rules: {
-      // Se quiser, desabilita import/no-unresolved temporariamente ou ajusta como preferir
-      'import/no-unresolved': 'off',
+      rules: {
+        '@typescript-eslint/no-unused-vars': 'warn',
+        'react-hooks/exhaustive-deps': 'warn',
+        'import/no-unresolved': 'off',
+      }
     },
   },
 ]);
