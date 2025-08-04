@@ -11,10 +11,12 @@ const TrendingCard = ({
 
     return (
         <TouchableOpacity
+            testID="trending-card-touchable"
             className="w-32 relative pl-5"
             onPress={() => router.push(`/movies/${movie_id}`)}
         >
             <Image
+                testID="trending-image"
                 source={{ uri: poster_url }}
                 className="w-32 h-48 rounded-lg"
                 resizeMode="cover"
