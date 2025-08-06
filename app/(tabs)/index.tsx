@@ -59,7 +59,7 @@ const Index = () => {
                         {trendingMovies && (
                             <View className="mt-10">
                                 <Text className="text-lg text-white font-bold mb-3">
-                                    Trending Movies
+                                    Filmes em alta
                                 </Text>
                                 <FlatList
                                     horizontal
@@ -80,7 +80,7 @@ const Index = () => {
 
                         <>
                             <Text className="text-lg text-white font-bold mt-5 mb-3">
-                                Latest Movies
+                                Últimos filmes
                             </Text>
 
                             <FlatList
