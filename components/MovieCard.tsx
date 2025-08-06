@@ -1,37 +1,44 @@
-import {View, Text, Touchable, TouchableOpacity, Image} from "react-native";
-import {Link} from "expo-router";
-import {icons} from "@/constants/icons";
+import { useNavigation } from '@react-navigation/native';
+import type { StackNavigationProp } from '@react-navigation/stack';
+import { Image, TouchableOpacity } from "react-native";
+
+type RootStackParamList = {
+    Detalhes: { id: number };
+};
 
 const MovieCard = ({
-                       id, poster_path, title, vote_average,
-                       release_date
-                   }: Movie) => {
-    return (
-        <Link href={`/movies/${id}`} asChild>
-            <TouchableOpacity testID="movie-card" className="w-[30%]">
-                <Image
-                    testID="movie-poster"
-                    source={{
-                        uri: poster_path
-                            ? `https://image.tmdb.org/t/p/w500${poster_path}`
-                            : 'https://placehold.co/600x400/1a1a1a/ffffff.png'
-                    }}
-                    className="w-full h-52 rounded-lg"
-                    resizeMode="cover"
-                />
-                <Text className="text-sm font-bold text-white mt-2" numberOfLines={1}>{title}</Text>
-                <View className="flex-row items-center justify-start gap-x-1">
-                    <Image source={icons.star} className="size-4"/>
-                    <Text className="text-xs text-white font-bold uppercase">{Math.round(vote_average / 2)}</Text>
-                </View>
-                <View className="flex-row items-center justify-between">
-                    <Text className="text-xs text-light-300 font-medium mt-1">
-                        {release_date?.split('-')[0]}
-                    </Text>
-                </View>
-            </TouchableOpacity>
-        </Link>
-    )
-}
+    id,
+    poster_path,
+}: Movie) => {
+    const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
-export default MovieCard
+    return (
+        <TouchableOpacity
+            testID="movie-card"
+            style={{
+                flex: 1,
+                width: '50%',
+                aspectRatio: 156 / 228,
+                marginBottom: 20,
+            }}
+            onPress={() => navigation.navigate('Detalhes', { id })}
+        >
+            <Image
+                testID="movie-poster"
+                source={{
+                    uri: poster_path
+                        ? `https://image.tmdb.org/t/p/w500${poster_path}`
+                        : "https://placehold.co/600x400/1a1a1a/ffffff.png",
+                }}
+                style={{
+                    width: '100%',
+                    height: '100%',
+                    borderRadius: 6,
+                }}
+                resizeMode="cover"
+            />
+        </TouchableOpacity>
+    );
+};
+
+export default MovieCard;
