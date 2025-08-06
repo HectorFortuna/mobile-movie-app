@@ -1,39 +1,75 @@
 {
   "expo": {
-    "name": "MovieFlix",
+    "name": "BRQ Movies",
     "slug": "mobile_movie_app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/logo.png",
+    "icon": "./assets/icons/brqlogo.png",
     "scheme": "mobilemovieapp",
-    "userInterfaceStyle": "automatic",
+    "userInterfaceStyle": "dark",
+    "backgroundColor": "#16171B",
+    "splash": {
+      "image": "./assets/icons/brqlogo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#16171B"
+    },
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "splash": {
+        "image": "./assets/icons/brqlogo.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#16171B",
+        "dark": {
+          "image": "./assets/icons/brqlogo.png",
+          "resizeMode": "contain",
+          "backgroundColor": "#16171B"
+        }
+      }
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/logo.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/icons/brqlogo.png",
+        "backgroundColor": "#16171B"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "splash": {
+        "image": "./assets/icons/brqlogo.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#16171B",
+        "dark": {
+          "image": "./assets/icons/brqlogo.png",
+          "resizeMode": "contain",
+          "backgroundColor": "#16171B"
+        }
+      }
     },
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/logo.png"
+      "favicon": "./assets/icons/brqlogo.png",
+      "splash": {
+        "image": "./assets/icons/brqlogo.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#16171B"
+      }
     },
     "plugins": [
       "expo-router",
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/logo.png",
-          "imageWidth": 200,
+          "image": "./assets/icons/brqlogo.png",
           "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
+          "backgroundColor": "#16171B",
+          "dark": {
+            "image": "./assets/icons/brqlogo.png",
+            "resizeMode": "contain", 
+            "backgroundColor": "#16171B"
+          }
         }
-      ]
+      ],
+      "expo-font"
     ],
     "experiments": {
       "typedRoutes": true
