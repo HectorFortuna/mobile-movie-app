@@ -1,9 +1,23 @@
-import { View, Text, ScrollView, Image, TouchableOpacity, SafeAreaView, ActivityIndicator } from 'react-native';
-import React from 'react';
+import {
+    View,
+    Text,
+    ScrollView,
+    Image,
+    TouchableOpacity,
+    SafeAreaView,
+    ActivityIndicator,
+    Alert,
+} from "react-native";
+import React, { useState, useEffect } from "react";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import useFetch from "@/services/useFetch";
 import { fetchMovieDetails } from "@/services/api";
 import { icons } from "@/constants/icons";
+import {
+    isMovieSaved,
+    saveMovie,
+    removeMovie,
+} from "@/services/storage";
 
 interface MovieInfoProps {
     label: string;
@@ -22,14 +36,40 @@ const MovieInfo = ({ label, value }: MovieInfoProps) => (
 const Details = () => {
     const router = useRouter();
     const { id } = useLocalSearchParams();
-
-    const shouldFetch = typeof id === 'string' && id !== '';
+    const shouldFetch = typeof id === "string" && id !== "";
 
     const fetcher = shouldFetch
         ? () => fetchMovieDetails(id)
         : () => Promise.resolve(null as unknown as MovieDetails);
 
     const { data: movie, loading, error } = useFetch(fetcher);
+    const [saved, setSaved] = useState(false);
+
+    useEffect(() => {
+        if (movie?.id) {
+            isMovieSaved(movie.id).then(setSaved);
+        }
+    }, [movie?.id]);
+
+    const toggleSave = async () => {
+        if (!movie) return;
+
+        try {
+            if (saved) {
+                await removeMovie(movie.id);
+                setSaved(false);
+            } else {
+                await saveMovie({
+                    id: movie.id,
+                    title: movie.title,
+                    poster_path: movie.poster_path,
+                });
+                setSaved(true);
+            }
+        } catch (err) {
+            Alert.alert("Erro", "Não foi possível atualizar os favoritos.");
+        }
+    };
 
     if (loading) {
         return (
@@ -42,20 +82,20 @@ const Details = () => {
     if (!movie) {
         return (
             <SafeAreaView className="bg-primary flex-1 items-center justify-center">
-                <Text className="text-white text-base">No movie data available.</Text>
+                <Text className="text-white text-base">Nenhum dado disponível.</Text>
             </SafeAreaView>
         );
     }
 
     return (
         <View className="bg-primary flex-1">
-            <ScrollView contentContainerStyle={{ paddingBottom: 80 }}>
+            <ScrollView contentContainerStyle={{ paddingBottom: 120 }}>
                 <View>
                     <Image
                         source={{
                             uri: movie.poster_path
                                 ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-                                : 'https://via.placeholder.com/500x750?text=No+Image',
+                                : "https://via.placeholder.com/500x750?text=No+Image",
                         }}
                         className="w-full h-[550px]"
                         resizeMode="stretch"
@@ -117,6 +157,17 @@ const Details = () => {
                 </View>
             </ScrollView>
 
+            {/* Botão de favorito */}
+            <TouchableOpacity
+                className="absolute bottom-20 left-0 right-0 mx-5 bg-dark-100 rounded-lg py-3.5 flex flex-row items-center justify-center z-50"
+                onPress={toggleSave}
+            >
+                <Text className="text-white font-semibold text-base">
+                    {saved ? "❤️ Remover dos Favoritos" : "🤍 Salvar como Favorito"}
+                </Text>
+            </TouchableOpacity>
+
+            {/* Botão voltar */}
             <TouchableOpacity
                 className="absolute bottom-5 left-0 right-0 mx-5 bg-accent rounded-lg py-3.5 flex flex-row items-center justify-center z-50"
                 onPress={router.back}
@@ -126,7 +177,7 @@ const Details = () => {
                     className="size-5 mr-1 mt-0.5 rotate-180"
                     tintColor="#fff"
                 />
-                <Text className="text-white font-semibold text-base">Go Back</Text>
+                <Text className="text-white font-semibold text-base">Voltar</Text>
             </TouchableOpacity>
         </View>
     );
