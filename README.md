@@ -1,50 +1,45 @@
-# Welcome to your Expo app 👋
+🎬 BRQ Movies
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Aplicativo mobile desenvolvido em React Native com Expo para exibir informações de filmes utilizando a API do TMDB.
+Este projeto foi desenvolvido para o desafio técnico BRQ.
+🚀 Tecnologias Utilizadas
 
-## Get started
+    React Native + Expo
 
-1. Install dependencies
+    TypeScript
 
-   ```bash
-   npm install
-   ```
+    API TMDB (The Movie Database)
 
-2. Start the app
+📋 Funcionalidades
 
-   ```bash
-   npx expo start
-   ```
+    Exibição de detalhes do filme
 
-In the output, you'll find options to open the app in a
+    Marcar e gerenciar filmes como favoritos
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+    Navegação por abas (Tab Navigation)
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+    Armazenamento local de favoritos
 
-## Get a fresh project
+📂 Como Rodar o Projeto
 
-When you're ready, run:
+    ⚠ Importante: Certifique-se de estar na branch correta antes de iniciar. (desafio-brq)
 
-```bash
-npm run reset-project
-```
+git clone https://github.com/HectorFortuna/mobile-movie-app.git
+cd mobile-movie-app
+git checkout desafio-brq
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+1️⃣ Instalar dependências
 
-## Learn more
+npm install
 
-To learn more about developing your project with Expo, look at the following resources:
+2️⃣ Rodar o projeto
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+npx expo start
 
-## Join the community
+Após rodar o comando, você poderá abrir o app:
 
-Join our community of developers creating universal apps.
+    No seu celular, com o Expo Go (escaneando o QR code)
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+    No emulador Android/iOS
+
+O usuário é user e a senha 123.
