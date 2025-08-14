@@ -39,7 +39,13 @@ const Saved = () => {
                         className="mt-10 self-center"
                     />
                 ) : movies.length === 0 ? (
-                    <Text className="text-white text-center mt-10 text-base">Nenhum filme salvo.</Text>
+                    <Text style={{
+                            color: '#FFFFFF',
+                            textAlign: 'center',
+                            marginTop: 40,
+                            fontSize: 16,
+                            fontWeight: '400'
+                            }}>Nenhum filme salvo.</Text>
                 ) : (
                     <View className="flex-1 mt-5">
                         <FlatList

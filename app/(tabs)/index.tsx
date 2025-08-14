@@ -1,15 +1,9 @@
 import MovieCard from "@/components/MovieCard";
 import { fetchMovies } from "@/services/api";
 import useFetch from "@/services/useFetch";
-import { useRouter } from "expo-router";
 import { ActivityIndicator, FlatList, ScrollView, Text, View } from "react-native";
 
 const Index = () => {
-    const router = useRouter();
-    
-    const handleLogout = () => {
-        console.log("Logout clicado");
-    };
 
     const {
         data: movies,
